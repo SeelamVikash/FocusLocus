@@ -1,0 +1,20 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Databases
+backend/courses.db
+backend/courses.db-journal
+
+# Downloaded videos (large files)
+backend/downloads/
+
+# Local IDE configuration
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
