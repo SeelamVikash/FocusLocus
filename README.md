@@ -70,6 +70,7 @@ d:/Course_App/
 ├── FocusLocus.ico         # Custom Rocket icon file
 ├── setup.bat              # One-click Windows setup installer
 ├── run_app.bat            # Windows background batch script
+├── Quick_Start.txt        # Simple 3-step guide for non-developers
 ├── requirements.txt       # Python package dependencies
 └── .gitignore             # Git repository ignored files config
 ```

@@ -1,0 +1,40 @@
+========================================================================
+                      FocusLocus - QUICK START GUIDE
+========================================================================
+If you are new to programming and just want to run this application,
+follow these 3 simple steps to get started!
+
+------------------------------------------------------------------------
+STEP 1: Unzip the files
+------------------------------------------------------------------------
+Make sure you have extracted/unzipped this project folder to your 
+computer (for example, into your Documents folder or D: drive).
+Do NOT run it directly from a ZIP file.
+
+------------------------------------------------------------------------
+STEP 2: Double-click 'setup.bat'
+------------------------------------------------------------------------
+Double-click the file named "setup.bat" in this folder.
+- This will check if you have Python installed. If not, it will 
+  automatically and silently install it for you!
+- It will install all the necessary app files.
+- It will ask if you want to place a "FocusLocus" shortcut on your Desktop.
+- Type "Y" (yes) and press Enter to create the shortcut.
+
+*Note: If it installs Python for the first time, it will ask you to
+close the window and double-click 'setup.bat' one more time to finish.*
+
+------------------------------------------------------------------------
+STEP 3: Run the application!
+------------------------------------------------------------------------
+Once the setup is done, your web browser will automatically open to 
+the application!
+
+For all future study sessions:
+- Just double-click the "FocusLocus" Rocket icon on your Desktop.
+- The server will run invisibly in the background, and your browser 
+  will open the app automatically!
+
+========================================================================
+Enjoy studying with FocusLocus! 🚀📚
+========================================================================
