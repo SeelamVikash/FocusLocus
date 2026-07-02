@@ -91,9 +91,9 @@ if /I "!make_shortcut!"=="Y" (
 :: 4. Launching the App
 echo.
 echo [4/4] Starting backend server and loading FocusLocus...
-start /b cmd /c "python -m uvicorn backend.main:app --port 8000"
+start /b cmd /c "python -m uvicorn backend.main:app --port 8001"
 timeout /t 3 >nul
-start http://localhost:8000/
+start http://localhost:8001/
 
 echo.
 echo =========================================================
@@ -111,7 +111,7 @@ echo 2. OR double-click the "FocusLocus.exe" launcher inside this folder:
 echo    %~dp0FocusLocus.exe
 echo.
 echo 3. Once launched, you can access the interface in your
-echo    browser at: http://localhost:8000/
+echo    browser at: http://localhost:8001/
 echo.
 echo =========================================================
 echo.

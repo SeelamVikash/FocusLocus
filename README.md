@@ -24,7 +24,7 @@ This script will automate everything for you:
 1. **Checks for Python**: Detects if Python is installed. If not, it silently downloads and installs Python 3.12 via Windows Package Manager (`winget`).
 2. **Installs Libraries**: Installs all required libraries (`fastapi`, `uvicorn`, `yt-dlp`, etc.).
 3. **Creates a Desktop Shortcut**: Creates a **FocusLocus** shortcut directly on your Windows Desktop (with a custom Rocket icon) for easy one-click launching!
-4. **Launches the Web App**: Automatically spins up the server and opens `http://localhost:8000/` in your browser.
+4. **Launches the Web App**: Automatically spins up the server and opens `http://localhost:8001/` in your browser.
 
 ---
 
@@ -46,9 +46,9 @@ Run the launcher executable (Windows) or start uvicorn directly:
 .\FocusLocus.exe
 
 # Manual command line (All OS)
-python -m uvicorn backend.main:app --port 8000
+python -m uvicorn backend.main:app --port 8001
 ```
-Open your browser to: **[http://localhost:8000/](http://localhost:8000/)**
+Open your browser to: **[http://localhost:8001/](http://localhost:8001/)**
 
 ---
 
@@ -78,18 +78,18 @@ d:/Course_App/
 
 ## 🔧 Debugging & Troubleshooting Guide
 
-### 1. Port 8000 is Already in Use
-**Symptom**: `ERROR: [Errno 10048] error while attempting to bind on address ('127.0.0.1', 8000)`  
-**Solution**: Another process or a zombie uvicorn instance is holding port 8000. Free up the port in PowerShell:
+### 1. Port 8001 is Already in Use
+**Symptom**: `ERROR: [Errno 10048] error while attempting to bind on address ('127.0.0.1', 8001)`  
+**Solution**: Another process or a zombie uvicorn instance is holding port 8001. Free up the port in PowerShell:
 ```powershell
-Get-NetTCPConnection -LocalPort 8000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }
+Get-NetTCPConnection -LocalPort 8001 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }
 ```
 
 ### 2. Python Environment & Library Path Issues
 **Symptom**: `No module named uvicorn` or `No module named fastapi`  
 **Solution**: On Windows, you may have multiple Python interpreters (e.g. MSYS2 vs Windows Store). Ensure you run `pip` and `uvicorn` using the same executable. The Windows Store Python path usually contains your installed packages:
 ```powershell
-C:\Users\<Username>\AppData\Local\Microsoft\WindowsApps\python.exe -m uvicorn backend.main:app --port 8000
+C:\Users\<Username>\AppData\Local\Microsoft\WindowsApps\python.exe -m uvicorn backend.main:app --port 8001
 ```
 
 ### 3. YouTube Downloads / Imports Fail
