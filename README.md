@@ -1,6 +1,6 @@
 # FocusLocus 🚀
 
-**FocusLocus** is a premium, self-hosted, multi-user course hub designed to organize, compile, and stream courses using YouTube playlist URLs. Built using **FastAPI (Python)** and **React (JavaScript)**, it provides an isolated, secure, distraction-free environment for learning, both online and offline.
+**FocusLocus** is a premium, self-hosted, multi-user course hub designed to organize, compile, and stream courses using YouTube playlist URLs and custom video links. Built using **FastAPI (Python)** and **React (JavaScript)**, it provides an isolated, secure, distraction-free environment for learning, both online and offline.
 
 ---
 
