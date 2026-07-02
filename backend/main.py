@@ -1,4 +1,4 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException, Body, Request, Header
+from fastapi import FastAPI, BackgroundTasks, HTTPException, Body, Request, Header, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, StreamingResponse
@@ -371,12 +371,27 @@ def range_streamer(file_path: str, start: int, end: int, chunk_size: int = 256 *
             curr_offset += len(chunk)
 
 @app.get("/api/videos/play/{video_id}")
-def play_offline_video(video_id: int, request: Request, x_user_id: int = Header(..., alias="X-User-Id")):
+def play_offline_video(
+    video_id: int, 
+    request: Request, 
+    user_id: Optional[str] = None, 
+    x_user_id: Optional[str] = Header(None, alias="X-User-Id")
+):
+    # Authenticate user from query parameter or header (handles browser native video elements)
+    uid_str = user_id or x_user_id
+    if not uid_str or uid_str == "null" or uid_str == "undefined":
+        raise HTTPException(status_code=401, detail="User ID required")
+        
+    try:
+        effective_user_id = int(uid_str)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid User ID format")
+
     video = get_video_by_id(video_id)
     if not video or not video["offline_path"]:
         raise HTTPException(status_code=404, detail="Video not downloaded or not found")
         
-    course = get_course_details(x_user_id, video["course_id"])
+    course = get_course_details(effective_user_id, video["course_id"])
     if not course:
         raise HTTPException(status_code=403, detail="Access denied")
         
@@ -409,17 +424,29 @@ def play_offline_video(video_id: int, request: Request, x_user_id: int = Header(
             headers["Content-Range"] = f"bytes {start}-{end}/{file_size}"
             headers["Content-Length"] = str(content_length)
             
-            return StreamingResponse(
-                range_streamer(abs_path, start, end),
+            with open(abs_path, "rb") as f:
+                f.seek(start)
+                chunk = f.read(content_length)
+                chunk = unscramble_bytes(chunk, start)
+                
+            return Response(
+                content=chunk,
                 status_code=206,
-                headers=headers
+                headers=headers,
+                media_type="video/mp4"
             )
             
+    # Fallback to serving whole file if no range header was provided
+    with open(abs_path, "rb") as f:
+        chunk = f.read()
+        chunk = unscramble_bytes(chunk, 0)
+        
     headers["Content-Length"] = str(file_size)
-    return StreamingResponse(
-        range_streamer(abs_path, 0, file_size - 1),
+    return Response(
+        content=chunk,
         status_code=200,
-        headers=headers
+        headers=headers,
+        media_type="video/mp4"
     )
 
 # Serve Frontend Static Files

@@ -1842,7 +1842,7 @@ function CourseViewer({ courseId, onBack, showNotification }) {
                             <video 
                                 key={activeVideo.id}
                                 ref={videoElementRef}
-                                src={`/api/videos/play/${activeVideo.id}`} 
+                                src={`/api/videos/play/${activeVideo.id}?user_id=${localStorage.getItem('study_current_user_id')}`} 
                                 className="offline-video-player"
                                 controls
                                 onEnded={() => handleVideoAutoFinish(activeVideo.id)}

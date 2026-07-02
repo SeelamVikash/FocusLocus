@@ -133,11 +133,11 @@ def download_video(video_id: str, db_video_id: int, save_dir: str, progress_call
         elif d['status'] == 'finished':
             progress_callback(100)
             
-    # Options tailored to download a pre-merged mp4 (h264+aac) 
-    # to avoid needing external ffmpeg dependency for merging.
-    # We cap at 720p or less to conserve user disk space and bandwidth.
+    # Options tailored to download best video (capped at 720p) and best audio
+    # and merge them using ffmpeg into a single MP4 container.
     ydl_opts = {
-        'format': 'best[ext=mp4][height<=720]/best[ext=mp4]/best',
+        'format': 'bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/bestvideo[height<=720]+bestaudio/best[ext=mp4]/best',
+        'merge_output_format': 'mp4',
         'outtmpl': outtmpl,
         'progress_hooks': [ytdl_hook],
         'quiet': True,
