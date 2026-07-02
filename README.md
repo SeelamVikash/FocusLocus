@@ -115,7 +115,7 @@ FocusLocus is a self-hosted personal organization utility designed for distracti
 
 ## 🤝 Credits & Acknowledgments
 This project was born out of a collaborative pair-programming journey:
-* **💡 Concept & Product Specifications**: Designed by the User.
+* **💡 Concept & Product Specifications**: Designed by the Vikash Seelam.
 * **💻 Engineering & Implementation**: Developed and polished by **Gemini (Antigravity)**, Google DeepMind's agentic AI software developer.
 
 ---
